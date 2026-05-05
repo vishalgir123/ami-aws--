@@ -1,0 +1,59 @@
+Steps to create your own AMI
+
+Step 1: Click on the launch instance button on the AWS management console.
+
+aws instance launch
+
+Step 2: Now you will be asked to select an already available AMI. Select the Free tier and then select the Amazon Linux 2 AMI.
+
+amazon machine image
+
+Step 3: Select t2.micro eligible (Instance types in aws) for the free tier. Now click on next: configure Instance details.
+
+aws instance type
+
+Step 4: Here you can select the various configurations related to the EC2 instance. Click on Next: Add storage.
+
+aws instance configuration
+
+Step 5: Select the amount of storage you want for the EC2 instance. Click on Next: Add tags and then click Next: configure security groups. 
+
+aws add storage
+
+Step 6: Here you can add the security groups to allow the desired traffic for your instance. Click on review and launch.
+
+aws configure security
+
+Step 7: Review all the configurations regarding the EC2 instance. Click on Launch.
+
+aws instance launch
+
+Step 8: Choose to create a new key pair option and write the key pair name. Download the key pair and then click on the launch instance.
+
+launching configured instance in aws
+
+Step 9: We can see that the instance is launched and running in a healthy state. Now It is required to create the Amazon Machine Image of this instance.
+
+aws instance dashboard
+
+Step 10: Click on actions. Go to the image and then click on create an image.
+
+instance to image in aws
+
+Step 11: A prompt will open wherein you are required to write the name of the image. Click on create an image.
+
+aws image configuration
+
+Step 12: The image creation request is received. Now the image will be created. Click on close. Now go to AMI services in the AWS management console.
+
+aws image creation sucess
+
+Step 13: The AMI image of our instance is created successfully.
+
+aws image
+Best Practices
+
+    Don't Bake Secrets: Never put AWS Access Keys or database passwords in your AMI. Use IAM Roles and AWS Secrets Manager instead.
+    Automate Builds: Don't build AMIs manually. Use EC2 Image Builder or HashiCorp Packer to automate the patching and creation pipeline.
+    Lifecycle Policy: Use Amazon Data Lifecycle Manager (DLM) to automatically deregister old AMIs and delete their snapshots to save money.
+    Encryption: Always encrypt your AMIs. You can share encrypted AMIs with other accounts by granting them permission to the KMS key.
