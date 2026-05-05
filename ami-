@@ -1,0 +1,16 @@
+The AMI Lifecycle
+
+Managing AMIs involves more than just creating them. You need to handle their entire lifecycle.
+
+    Create: You launch an instance, configure it (install patches, app code), and create an image.
+    Register: The AMI is registered with a unique ID (e.g., ami-12345678) in a specific Region.
+    Copy: AMIs are Region-specific. To use an AMI in eu-west-1 that you created in us-east-1, you must explicitly Copy it to the new region.
+    Deregister: When an AMI is old, you "Deregister" it.
+    Crucial Note: Deregistering the AMI does NOT delete the underlying EBS Snapshot. You must delete the snapshot separately to stop paying for storage.
+
+Types of AMIs
+
+    Amazon-Provided AMIs: Official, maintained images for Amazon Linux 2023, Ubuntu, Windows Server, etc. These are the safest starting point.
+    AWS Marketplace AMIs: Paid images provided by vendors (e.g., a pre-hardened CIS Benchmark image or a WordPress appliance).
+    Community AMIs: Images shared publicly by other AWS users. Use with caution. Always verify the source, as they could contain malware or backdoors.
+    Custom AMIs: Your own "Golden Images" that you build, harden, and maintain.
