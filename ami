@@ -1,0 +1,26 @@
+What is Amazon Machine Image (AMI)?
+Last Updated : 17 Dec, 2025
+
+An Amazon Machine Image (AMI) is a template that contains the software configuration (operating system, application server, and applications) required to launch an Amazon EC2 instance.
+
+Think of an AMI as the "blueprint" for your virtual server. You cannot launch an EC2 instance without specifying an AMI. Whether you launch one instance or thousands, they all start as a clone of the AMI you select.
+AWS-ami
+Core Components of an AMI
+
+An AMI is packaged with three main components:
+
+    Root Volume Template: A snapshot of the root volume (usually EBS) that contains the OS and installed software.
+    Launch Permissions: Controls which AWS accounts can use the AMI to launch instances.
+    Block Device Mapping: Specifies which volumes (root + additional storage) to attach to the instance when it launches.
+
+AMI Storage Types: EBS vs. Instance Store
+
+This is the most critical architectural distinction. AMIs are backed by either Amazon EBS or Instance Store.
+Feature	EBS-Backed AMI	Instance Store-Backed AMI
+Boot Time	Fast (Seconds/Minutes).	Slow (Minutes).
+Persistence	Persistent. Data survives stop/start.	Ephemeral. Data is LOST if the instance stops or fails.
+Stop/Start	Supported. You can stop the instance and restart it later.	Not Supported. You can only Reboot or Terminate.
+Root Device Limit	Up to 64 TB.	10 GB.
+Use Case	99% of workloads (Web servers, DBs).	High-performance computing (HPC), Distributed caches.
+
+    Almost always use EBS-Backed AMIs. Instance Store-backed AMIs are a legacy or niche feature for stateless, high-I/O workloads.
